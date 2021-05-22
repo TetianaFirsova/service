@@ -10,3 +10,6 @@ api.add_resource(Hello, '/Hello')
 
 from resources.departments import DepartmentsResource
 api.add_resource(DepartmentsResource, '/departments')
+
+from resources.employees import EmployeesResource
+api.add_resource(EmployeesResource, '/employees')

@@ -31,7 +31,7 @@ class EmployeeSchema(ma.Schema):
     id_emp = fields.Integer()
     first_name = fields.String()
     last_name = fields.String()
-    birth_date = fields.DateTime()
+    birth_date = fields.Date()
     salary = fields.Integer()
     department_id = fields.Integer()
     email = fields.String()
