@@ -97,7 +97,7 @@ class DepartmentResource(Resource):
         department = Department.query.filter_by(id_dep=id).first()
         if not department:
             return {'message': 'Department does not exist'}, 400
-
+        """
         from models.employee import Employee
         dep_employees=Employee.query.filter_by(department_id=department.id_dep).all()
         if dep_employees:
@@ -107,7 +107,20 @@ class DepartmentResource(Resource):
             avg_salary=sum/len(dep_employees)
         else:
             avg_salary=0
+        """
+        from models.employee import Employee, EmployeeSchema
+        employees_schema = EmployeeSchema(many=True)
+        dep_employees=Employee.query.filter_by(department_id=department.id_dep).all()
+        if dep_employees:
+            sum=0
+            for emp in dep_employees:
+                sum=sum+emp.salary
+            avg_salary=sum/len(dep_employees)
+            result1 = employees_schema.dump(dep_employees)
+        else:
+            avg_salary=0
+            result1 = 'no employees'
 
         result = department_schema.dump(department)
 
-        return { "status": 'success', 'data': result, 'average salary': avg_salary}, 200
+        return { "status": 'success', 'dep_data': result, 'dep_employees': result1, 'average salary': avg_salary}, 200

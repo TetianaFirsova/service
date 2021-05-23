@@ -21,4 +21,4 @@ def create_app(config_filename):
 app = create_app('config')
 
 if __name__ == "__main__":
-    app.run(debug=True, port='5002')
+    app.run(port='5002')
