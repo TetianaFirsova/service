@@ -96,7 +96,7 @@ class DepartmentResource(Resource):
 
         department = Department.query.filter_by(id_dep=id).first()
         if not department:
-            return {'message': 'Department does not exist'}, 400
+            return {'status': 'failed', 'message': 'Department does not exist'}, 400
         """
         from models.employee import Employee
         dep_employees=Employee.query.filter_by(department_id=department.id_dep).all()

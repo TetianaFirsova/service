@@ -120,7 +120,7 @@ class EmployeeResource(Resource):
 
         employee = Employee.query.filter_by(id_emp=id).first()
         if not employee:
-            return {'message': 'Employee does not exist'}, 400
+            return {'status': 'failed', 'message': 'Employee does not exist'}, 400
         result = employee_schema.dump(employee)
 
         return { "status": 'success', 'data': result}, 200
