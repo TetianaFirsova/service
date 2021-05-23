@@ -87,3 +87,16 @@ class DepartmentsResource(Resource):
         result = department_schema.dump(department)
 
         return { "status": 'success', 'data': result}, 204
+
+
+class DepartmentResource(Resource):
+    def get(self, id):
+        from models.department import Department, DepartmentSchema
+        department_schema = DepartmentSchema()
+
+        department = Department.query.filter_by(id_dep=id).first()
+        if not department:
+            return {'message': 'Department does not exist'}, 400
+        result = department_schema.dump(department)
+
+        return { "status": 'success', 'data': result}, 200

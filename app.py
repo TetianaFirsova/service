@@ -13,3 +13,15 @@ api.add_resource(DepartmentsResource, '/departments')
 
 from resources.employees import EmployeesResource
 api.add_resource(EmployeesResource, '/employees')
+
+from resources.employees import EmployeeResource
+api.add_resource(EmployeeResource, '/employees/<int:id>')
+
+from resources.departments import DepartmentResource
+api.add_resource(DepartmentResource, '/departments/<int:id>')
+
+from resources.employees import EmployeesSearch
+api.add_resource(EmployeesSearch, '/employees/search/<search_birth_date>')
+
+from resources.employees import EmployeesPeriodSearch
+api.add_resource(EmployeesPeriodSearch, '/employees/search_between/<start_birth_date>,<end_birth_date>')

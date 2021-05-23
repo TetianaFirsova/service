@@ -1,5 +1,6 @@
 from flask import request
 from flask_restful import Resource
+from datetime import datetime
 
 
 class EmployeesResource(Resource):
@@ -110,3 +111,56 @@ class EmployeesResource(Resource):
         result = employee_schema.dump(employee)
 
         return { "status": 'success', 'data': result}, 204
+
+
+class EmployeeResource(Resource):
+    def get(self, id):
+        from models.employee import Employee, EmployeeSchema
+        employee_schema = EmployeeSchema()
+
+        employee = Employee.query.filter_by(id_emp=id).first()
+        if not employee:
+            return {'message': 'Employee does not exist'}, 400
+        result = employee_schema.dump(employee)
+
+        return { "status": 'success', 'data': result}, 200
+
+
+class EmployeesSearch(Resource):
+    def get(self, search_birth_date):
+        from models.employee import Employee, EmployeeSchema
+        employees_schema = EmployeeSchema(many=True)
+
+        try:
+            birth_date_obj=datetime.strptime(str(search_birth_date), '%Y-%m-%d')
+        except ValueError as err:
+            return {'message': "Invalid birth date format"}
+
+        if birth_date_obj:
+            employees = Employee.query.filter_by(birth_date=search_birth_date).all()
+
+        if not employees:
+            return {'message': 'Employee mathing your date does not exist'}, 400
+
+        employees = employees_schema.dump(employees)
+        return {'status': 'success', 'data': employees}, 200
+
+class EmployeesPeriodSearch(Resource):
+    def get(self, start_birth_date, end_birth_date):
+        from models.employee import Employee, EmployeeSchema
+        employees_schema = EmployeeSchema(many=True)
+
+        try:
+            start_birth_date_obj=datetime.strptime(str(start_birth_date), '%Y-%m-%d')
+            end_birth_date_obj=datetime.strptime(str(end_birth_date), '%Y-%m-%d')
+        except ValueError as err:
+            return {'message': "Invalid birth dates format"}
+
+        if start_birth_date_obj.date() and end_birth_date_obj.date():
+            employees = Employee.query.filter(Employee.birth_date.between(start_birth_date, end_birth_date)).all()
+        
+        if not employees:
+            return {'message': 'Employee mathing your dates does not exist'}, 400
+
+        employees = employees_schema.dump(employees)
+        return {'status': 'success', 'data': employees}, 200
