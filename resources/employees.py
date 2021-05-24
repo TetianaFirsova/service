@@ -140,7 +140,7 @@ class EmployeesSearch(Resource):
             employees = Employee.query.filter_by(birth_date=search_birth_date).all()
 
         if not employees:
-            return {'message': 'Employee mathing your date does not exist'}, 400
+            return {'status': 'failed', 'message': 'Employee mathing your date does not exist'}, 400
 
         employees = employees_schema.dump(employees)
         return {'status': 'success', 'data': employees}, 200
@@ -160,7 +160,7 @@ class EmployeesPeriodSearch(Resource):
             employees = Employee.query.filter(Employee.birth_date.between(start_birth_date, end_birth_date)).all()
         
         if not employees:
-            return {'message': 'Employee mathing your dates does not exist'}, 400
+            return {'status': 'failed', 'message': 'Employee mathing your dates does not exist'}, 400
 
         employees = employees_schema.dump(employees)
         return {'status': 'success', 'data': employees}, 200
