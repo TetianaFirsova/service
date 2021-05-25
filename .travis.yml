@@ -9,4 +9,4 @@ script:
   - export FLASK_CONFIG=testing
   - coverage run tests.py
 after_success:
-  - coveralls
+  - coveralls -v

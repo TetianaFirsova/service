@@ -155,6 +155,14 @@ class TestCRUDoperationsEmployee(TestBase):
         self.assertEqual(res.status_code, 200)
         self.assertIn('name2', str(res.data))
 
+    def test_api_can_search_employee_by_between_dates(self):
+        """
+        Test API can search employee by between two dates 
+        """
+        res = self.client().get(service_url_emp+'/search_between/2013-10-24,2014-10-24')
+        self.assertEqual(res.status_code, 200)
+        self.assertIn('name1', str(res.data))
+        self.assertIn('name2', str(res.data))
 
 
 if __name__ == '__main__':
