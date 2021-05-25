@@ -2,6 +2,25 @@ from flask import request
 from flask_restful import Resource
 
 
+def avg_salary_and_dep_emps(depart):
+    """
+    returns all employees of department 'depart' and average salary for that employees 
+    """
+    from models.employee import Employee, EmployeeSchema
+    employees_schema = EmployeeSchema(many=True)
+    dep_employees=Employee.query.filter_by(department_id=depart.id_dep).all()
+    if dep_employees:
+        sum=0
+        for emp in dep_employees:
+            sum=sum+emp.salary
+        avg_salary=sum/len(dep_employees)
+        result1 = employees_schema.dump(dep_employees)
+    else:
+        avg_salary=0
+        result1 = 'no employees'
+    return result1, avg_salary
+
+"""
 class DepartmentsResource(Resource):
     def get(self):
         from models.department import Department, DepartmentSchema
@@ -10,7 +29,20 @@ class DepartmentsResource(Resource):
         departments = Department.query.all()
         departments = departments_schema.dump(departments)
         return {'status': 'success', 'data': departments}, 200
+"""
 
+class DepartmentsResource(Resource):
+    def get(self):
+        from models.department import Department, DepartmentSchema
+        departments_schema = DepartmentSchema(many=True)
+
+        departments = Department.query.all()
+        avg_salary=[]
+        for dep in departments:
+            avg_salary.append(avg_salary_and_dep_emps(dep)[1])
+
+        departments = departments_schema.dump(departments)
+        return {'status': 'success', 'data': departments, 'avg_sal': avg_salary}, 200
 
     def post(self):
         json_data = request.get_json(force=True)
@@ -97,29 +129,8 @@ class DepartmentResource(Resource):
         department = Department.query.filter_by(id_dep=id).first()
         if not department:
             return {'status': 'failed', 'message': 'Department does not exist'}, 400
-        """
-        from models.employee import Employee
-        dep_employees=Employee.query.filter_by(department_id=department.id_dep).all()
-        if dep_employees:
-            sum=0
-            for emp in dep_employees:
-                sum=sum+emp.salary
-            avg_salary=sum/len(dep_employees)
-        else:
-            avg_salary=0
-        """
-        from models.employee import Employee, EmployeeSchema
-        employees_schema = EmployeeSchema(many=True)
-        dep_employees=Employee.query.filter_by(department_id=department.id_dep).all()
-        if dep_employees:
-            sum=0
-            for emp in dep_employees:
-                sum=sum+emp.salary
-            avg_salary=sum/len(dep_employees)
-            result1 = employees_schema.dump(dep_employees)
-        else:
-            avg_salary=0
-            result1 = 'no employees'
+        
+        result1, avg_salary = avg_salary_and_dep_emps(department)
 
         result = department_schema.dump(department)
 
