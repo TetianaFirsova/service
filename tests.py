@@ -6,8 +6,8 @@ from run import app
 from models.department import Department
 from models.employee import Employee
 
-service_url='http://127.0.0.1:5002/api/departments'
-service_url_emp='http://127.0.0.1:5002/api/employees'
+service_url='/api/departments'
+service_url_emp='/api/employees'
 
 class TestBase(TestCase):
 
