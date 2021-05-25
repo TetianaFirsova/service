@@ -164,6 +164,10 @@ class TestCRUDoperationsEmployee(TestBase):
         self.assertIn('name1', str(res.data))
         self.assertIn('name2', str(res.data))
 
-
+    def test_api_Hello(self):
+        res = self.client().get('/api/Hello')
+        self.assertEqual(res.status_code, 200)
+        self.assertIn('Hello', str(res.data))
+        
 if __name__ == '__main__':
     unittest.main()
