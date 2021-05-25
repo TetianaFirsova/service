@@ -31,6 +31,7 @@ class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI='sqlite:///departments_test_db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    PRESERVE_CONTEXT_ON_EXCEPTION = False
 
 app_config = {
     'development': DevelopmentConfig,

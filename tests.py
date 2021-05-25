@@ -7,6 +7,7 @@ from models.department import Department
 from models.employee import Employee
 
 service_url='http://127.0.0.1:5002/api/departments'
+service_url_emp='http://127.0.0.1:5002/api/employees'
 
 class TestBase(TestCase):
 
@@ -70,7 +71,7 @@ class TestModels(TestBase):
         """
         self.assertEqual(Employee.query.count(), 2)
         
-class TestOperations(TestBase):
+class TestCRUDoperationsDepartment(TestBase):
     def test_department_creation(self):
         """
         Test API can create a department (POST request)
@@ -109,13 +110,59 @@ class TestOperations(TestBase):
 
     def test_department_deletion(self):
         """
-        Test API can delete an existing bucketlist. (DELETE request)
+        Test API can delete an existing department. (DELETE request)
         """
         res = self.client().delete(service_url, json={"id_dep": 1})
         self.assertEqual(res.status_code, 204)
         # Test to see if it exists, should return a 400
         result = self.client().get(service_url+'/1')
         self.assertEqual(result.status_code, 400)
+
+class TestCRUDoperationsEmployee(TestBase):
+
+    def test_api_can_get_all_employees(self):
+        """
+        Test API can get a list of all employees(GET request)
+        """
+        res = self.client().get(service_url_emp)
+        self.assertEqual(res.status_code, 200)
+        self.assertIn('name1', str(res.data))
+        self.assertIn('name2', str(res.data))
+
+    def test_api_can_get_employee_by_id(self):
+        """
+        Test API can get a single employee by it's id
+        """
+        res = self.client().get(service_url_emp+'/1')
+        self.assertEqual(res.status_code, 200)
+        self.assertIn('name1', str(res.data))
+
+    def test_employee_deletion(self):
+        """
+        Test API can delete an existing employee. (DELETE request)
+        """
+        res = self.client().delete(service_url_emp, json={"id_emp": 1})
+        self.assertEqual(res.status_code, 204)
+        # Test to see if it exists, should return a 400
+        result = self.client().get(service_url_emp+'/1')
+        self.assertEqual(result.status_code, 400)
+
+    def test_api_can_search_employee_by_birth_date(self):
+        """
+        Test API can search employee by birth date
+        """
+        res = self.client().get(service_url_emp+'/search/2014-10-24')
+        self.assertEqual(res.status_code, 200)
+        self.assertIn('name2', str(res.data))
+
+    def test_api_can_search_employee_by_between_dates(self):
+        """
+        Test API can search employee by between two dates 
+        """
+        res = self.client().get(service_url_emp+'/search_between/2013-10-24,2014-10-24')
+        self.assertEqual(res.status_code, 200)
+        self.assertIn('name1', str(res.data))
+        self.assertIn('name2', str(res.data))
 
 
 if __name__ == '__main__':
