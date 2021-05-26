@@ -1,1 +1,2 @@
-web: gunicorn --bind 0.0.0.0:$PORT run: app
+web: gunicorn run: app --log-file - --log-level debug
+flask db migrate
