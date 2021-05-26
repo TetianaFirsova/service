@@ -7,7 +7,7 @@ import os
 db = SQLAlchemy()
 
 def create_app(config_filename):
-    app = Flask(__name__,server=server)
+    app = Flask(__name__)
     app.config.from_object(app_config[config_filename])
     
     from app import api_bp
