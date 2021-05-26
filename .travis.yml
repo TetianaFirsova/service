@@ -16,7 +16,6 @@ deploy:
   app: "depemp-service"
   api_key:
     secure: "ee70e750-6f5e-42fb-854a-7c2558f5e168"
+  app: library-production
   on:
-    branches:    
-      only:      
-        - master 
+    branch: continuos-deployment
