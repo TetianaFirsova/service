@@ -14,8 +14,7 @@ after_success:
 deploy:
   provider: heroku
   app: "depemp-service"
-  api_key:
-    secure: "ee70e750-6f5e-42fb-854a-7c2558f5e168"
+  api_key: "c36fd3f5-8d95-44bc-b1a9-9ee50d1b2e5d"
   skip_cleanup: true
   on:
     repo: TetianaFirsova/service
