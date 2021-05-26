@@ -1,0 +1,4 @@
+[run]
+
+omit =
+    */home/travis/virtualenv/python3.8.7/lib/python3.8/site-packages/*
