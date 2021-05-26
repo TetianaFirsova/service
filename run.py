@@ -24,4 +24,4 @@ config_name = os.getenv('FLASK_CONFIG')
 app = create_app('production')
 
 if __name__ == "__main__":
-    app.run(port='5002')
+    app.run(port='5002', server=app.server)
