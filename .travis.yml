@@ -6,7 +6,7 @@ install:
   - pip install -r requirements.txt
   - pip install coveralls
 script: 
-  - export FLASK_CONFIG='production'
+  - export FLASK_CONFIG=production
   # - coverage run tests.py
 after_success:
   - coverage report --omit '/home/travis/virtualenv/python3.8.7/lib/python3.8/site-packages/*'
