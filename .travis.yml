@@ -11,3 +11,8 @@ script:
 after_success:
   - coverage report --omit '/home/travis/virtualenv/python3.8.7/lib/python3.8/site-packages/*'
   - coveralls
+deploy:
+  provider: heroku
+  app: "depemp-service"
+  api_key:
+    secure: "ee70e750-6f5e-42fb-854a-7c2558f5e168"
