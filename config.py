@@ -22,7 +22,7 @@ class ProductionConfig(Config):
     """
 
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'postgres://pnnclnxtllplex:e27b2e5623dc0b6bd609f3418a0e98e8a011df985c125812e3cdcb98369b3123@ec2-54-220-53-223.eu-west-1.compute.amazonaws.com:5432/deon0a3nehg6cq'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://pnnclnxtllplex:e27b2e5623dc0b6bd609f3418a0e98e8a011df985c125812e3cdcb98369b3123@ec2-54-220-53-223.eu-west-1.compute.amazonaws.com:5432/deon0a3nehg6cq'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class TestingConfig(Config):
