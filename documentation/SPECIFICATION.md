@@ -32,7 +32,7 @@ Data fields of employees resource are the following:
 
 Resources are represented by URIs. The client send requests to these URIs using the methods defined by the HTTP protocol, and possibly as a result of that the state of the affected resource changes.
 
-To test the web service one should use the REST-clients, for example _curl_. It allows you to execute any HTTP methods for the desired resource. For example to test departments resource we can use the following curl command:
+To test the web service one should use the REST-clients, for example _curl_. It allows to execute any HTTP methods for the desired resource. For example to test departments resource one can use the following curl command:
 
 $ curl -i -H &quot;Content-Type: application/json&quot; -X POST -d &#39;{&quot;dep\_name&quot;:&quot;test faculty&quot;, &quot;description&quot;: &quot;test department description&quot;}&#39; http://depemp-service.herokuapp.com/api/departments
 
@@ -42,6 +42,6 @@ $ curl -i http://depemp-service.herokuapp.com/api/departments
 
 $ curl -X PUT -H &#39;Content-Type: application/json&#39; -d &#39;{&quot;id\_dep&quot;: 1, {&quot;dep\_name&quot;:&quot;new faculty&quot;, &quot;description&quot;: &quot;new description&quot;}&#39; http://depemp-service.herokuapp.com/api/departments
 
-$ curl -X DELETE -H &#39;Content-Type: application/json&#39; -d &#39;{&quot;id\_emp&quot;: 1}&#39; http:// depemp-service.herokuapp.com/api/departments
+$ curl -X DELETE -H &#39;Content-Type: application/json&#39; -d &#39;{&quot;id\_emp&quot;: 1}&#39; http://depemp-service.herokuapp.com/api/departments
 
 where **-X** _[METHOD]_ defines HTTP method, **-d** _&quot;name=value&quot;_ sets the name and values of variables in POST/PUT, **-H** _[HEADER]_ sets the header, **-i** displays response headers.
