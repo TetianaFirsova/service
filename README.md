@@ -52,7 +52,11 @@ You need to replace the above values with the appropriate values of 'username', 
 or
   - export FLASK_CONFIG=development (for Linux)
 
-#### 6. Run the project:
+#### 6. Apply migration to the database:
+
+	>  flask db upgrade
+
+#### 7. Run the project:
 	>  python run.py
 
 After running the service you could visit http://127.0.0.1:5002/api/departments or another endpoint, see [service specification](/documentation/SPECIFICATION.md)
