@@ -1,8 +1,10 @@
 # service
 web service (Restful) for CRUD operations (part of my final project)
+
+[![Build Status](https://travis-ci.com/TetianaFirsova/service.svg?token=5ZjEYcjLPcSjdBdzxxVo&branch=main)](https://travis-ci.com/TetianaFirsova/service)
 [![Coverage Status](https://coveralls.io/repos/github/TetianaFirsova/service/badge.svg)](https://coveralls.io/github/TetianaFirsova/service)
 
-See **[service specification](/documentation/SPECIFICATION.md)**
+See service **[specification](/documentation/SPECIFICATION.md)**
 
 The web service is deployed on Heroku with name &quot;depemp-service&quot; and available at [https://depemp-service.herokuapp.com/](https://depemp-service.herokuapp.com/)
 
