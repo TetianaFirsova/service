@@ -46,11 +46,13 @@ You need to replace the above values with the appropriate values of 'username', 
 
 	SQLALCHEMY_DATABASE_URI ="postgresql://username:password@localhost/database_name"
 
-#### 5. Set configuration variables:
-  - set FLASK_CONFIG=development (for Windows) 
+#### 5. Set configuration and environment variables:
+  - set FLASK_CONFIG=development 
+  - set FLASK_APP=run (for Windows)
 
 or
-  - export FLASK_CONFIG=development (for Linux)
+  - export FLASK_CONFIG=development 
+  - export FLASK_APP=run (for Linux)
 
 #### 6. Apply migration to the database:
 

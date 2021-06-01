@@ -15,7 +15,7 @@ class Employee(db.Model):
     first_name = db.Column(db.String(30))
     last_name = db.Column(db.String(30))
     birth_date = db.Column(db.Date())
-    salary = db.Column(db.Integer())
+    salary = db.Column(db.Float())
     department_id = db.Column(db.Integer, db.ForeignKey("department.id_dep"))
     email = db.Column(db.String(60), unique=True)
 
@@ -32,6 +32,6 @@ class EmployeeSchema(ma.Schema):
     first_name = fields.String()
     last_name = fields.String()
     birth_date = fields.Date()
-    salary = fields.Integer()
+    salary = fields.Float()
     department_id = fields.Integer()
     email = fields.String()

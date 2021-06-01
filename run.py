@@ -14,7 +14,7 @@ def create_app(config_filename):
     app.register_blueprint(api_bp, url_prefix='/api')
 
     db.init_app(app)
-    migrate = Migrate(app, db)
+    migrate = Migrate(app, db, compare_type=True)
 
     from models import department, employee
 

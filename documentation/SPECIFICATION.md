@@ -26,7 +26,7 @@ Data fields of employees resource are the following:
 - **first\_name** : name of the employee. String type.
 - **last\_name** : sourname of the employee. String type.
 - **birth\_date** : employee&#39;s date of birth. Date type.
-- **salary** : employee&#39;s salary. Integer type.
+- **salary** : employee&#39;s salary. Float type.
 - **department\_id** : id of department where employee works. Integer type.
 - **email** : employee&#39;s e-mail address. String type.
 
