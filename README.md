@@ -13,7 +13,7 @@ The web service is deployed on Heroku with name &quot;depemp-service&quot; and a
 
 #### 0. Before you begin:
 - Make sure you have **Python3.x** installed on your system.
-- Install **PostgreSQL** database if you don't have it installed already.
+- Make sure you have **PostgreSQL** installed and running.
 - Make sure **virtualenv** is installed on your system.
 
 #### 1. Clone the project from Github into new directory:
@@ -37,7 +37,12 @@ From your terminal, make sure you are in the root folder of the project then run
 
 This will download and install all the extensions in [requirements.txt](/requirements.txt)
 
-#### 4. Setting up configuration
+#### 4. Create PostgreSQL database:
+Type the following command in SQL Shell (psql):
+
+	CREATE DATABASE database_name;
+
+#### 5. Setting up configuration
 Change the following code in [config.py](/config.py):
 
 	SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:1974tanya5@localhost/departments_db_1'
@@ -46,7 +51,7 @@ You need to replace the above values with the appropriate values of 'username', 
 
 	SQLALCHEMY_DATABASE_URI ="postgresql://username:password@localhost/database_name"
 
-#### 5. Set configuration and environment variables:
+#### 6. Set configuration and environment variables:
   - set FLASK_CONFIG=development 
   - set FLASK_APP=run (for Windows)
 
@@ -54,11 +59,11 @@ or
   - export FLASK_CONFIG=development 
   - export FLASK_APP=run (for Linux)
 
-#### 6. Apply migration to the database:
+#### 7. Apply migration to the database:
 
 	>  flask db upgrade
 
-#### 7. Run the project:
+#### 8. Run the project:
 	>  python run.py
 
 After running the service you could visit http://127.0.0.1:5002/api/departments or another endpoint, see [service specification](/documentation/SPECIFICATION.md)
