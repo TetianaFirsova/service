@@ -45,11 +45,9 @@ Type the following command in SQL Shell (psql):
 #### 5. Setting up configuration
 Change the following code in [config.py](/config.py):
 
-	SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:1974tanya5@localhost/departments_db_1'
+	SQLALCHEMY_DATABASE_URI = "postgresql://username:password@localhost/database_name"
 
-You need to replace the above values with the appropriate values of 'username', 'password', 'database_name' for your database by the rules:
-
-	SQLALCHEMY_DATABASE_URI ="postgresql://username:password@localhost/database_name"
+You need to replace the above values with the appropriate values of 'username', 'password', 'database_name' for your database.
 
 #### 6. Set configuration and environment variables:
   - set FLASK_CONFIG=development 
