@@ -5,6 +5,9 @@ from datetime import datetime
 
 class EmployeesResource(Resource):
     def get(self):
+        """
+        retrieve all employees
+        """
         from models.employee import Employee, EmployeeSchema
         employees_schema = EmployeeSchema(many=True)
 
@@ -13,6 +16,9 @@ class EmployeesResource(Resource):
         return {'status': 'success', 'data': employees}, 200
 
     def post(self):
+        """
+        create the employee
+        """
         json_data = request.get_json(force=True)
         if not json_data:
                return {'message': 'No input data provided'}, 400
@@ -52,6 +58,9 @@ class EmployeesResource(Resource):
         return { "status": 'success', 'data': result }, 201
 
     def put(self):
+        """
+        update the employee
+        """
         json_data = request.get_json(force=True)
         if not json_data:
                return {'message': 'No input data provided'}, 400
@@ -92,6 +101,9 @@ class EmployeesResource(Resource):
         return { "status": 'success', 'data': result }, 204
 
     def delete(self):
+        """
+        delete the employee
+        """
         json_data = request.get_json(force=True)
         if not json_data:
                return {'message': 'No input data provided'}, 400
@@ -115,6 +127,9 @@ class EmployeesResource(Resource):
 
 class EmployeeResource(Resource):
     def get(self, id):
+        """
+        retrieve one employee using its ID
+        """
         from models.employee import Employee, EmployeeSchema
         employee_schema = EmployeeSchema()
 
@@ -128,6 +143,9 @@ class EmployeeResource(Resource):
 
 class EmployeesSearch(Resource):
     def get(self, search_birth_date):
+        """
+        retrieve employees by date of birth
+        """
         from models.employee import Employee, EmployeeSchema
         employees_schema = EmployeeSchema(many=True)
 
@@ -147,6 +165,9 @@ class EmployeesSearch(Resource):
 
 class EmployeesPeriodSearch(Resource):
     def get(self, start_birth_date, end_birth_date):
+        """
+        retrieve employees born in the period between two dates
+        """
         from models.employee import Employee, EmployeeSchema
         employees_schema = EmployeeSchema(many=True)
 

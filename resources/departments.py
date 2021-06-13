@@ -33,6 +33,9 @@ class DepartmentsResource(Resource):
 
 class DepartmentsResource(Resource):
     def get(self):
+        """
+        retrieve all departments
+        """
         from models.department import Department, DepartmentSchema
         departments_schema = DepartmentSchema(many=True)
 
@@ -45,6 +48,9 @@ class DepartmentsResource(Resource):
         return {'status': 'success', 'data': departments, 'avg_sal': avg_salary}, 200
 
     def post(self):
+        """
+        create the department
+        """
         json_data = request.get_json(force=True)
         if not json_data:
                return {'message': 'No input data provided'}, 400
@@ -73,6 +79,9 @@ class DepartmentsResource(Resource):
         return { "status": 'success', 'data': result }, 201
 
     def put(self):
+        """
+        update the department
+        """
         json_data = request.get_json(force=True)
         if not json_data:
                return {'message': 'No input data provided'}, 400
@@ -100,6 +109,9 @@ class DepartmentsResource(Resource):
         return { "status": 'success', 'data': result }, 204
 
     def delete(self):
+        """
+        delete the department
+        """
         json_data = request.get_json(force=True)
         if not json_data:
                return {'message': 'No input data provided'}, 400
@@ -123,6 +135,9 @@ class DepartmentsResource(Resource):
 
 class DepartmentResource(Resource):
     def get(self, id):
+        """
+        retrieve one department using its ID
+        """
         from models.department import Department, DepartmentSchema
         department_schema = DepartmentSchema()
 

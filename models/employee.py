@@ -28,6 +28,9 @@ class Employee(db.Model):
         self.email=email
 
 class EmployeeSchema(ma.Schema):
+    """
+    define Schema for Employee class
+    """
     id_emp = fields.Integer()
     first_name = fields.String()
     last_name = fields.String()

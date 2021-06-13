@@ -21,6 +21,9 @@ class Department(db.Model):
         self.description = description
 
 class DepartmentSchema(ma.Schema):
+    """
+    define Schema for Department class
+    """
     id_dep = fields.Integer()
     dep_name = fields.String()
     description = fields.String()
